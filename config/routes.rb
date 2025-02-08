@@ -5,10 +5,18 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   # get "up" => "rails/health#show", as: :rails_health_check
 
-  get "/blog_posts/new", to: "blog_posts#new", as: "new_blog_post" # New must be placed before Show, so /new is not taken as not-existing id
-  post "/blog_posts", to: "blog_posts#create", as: "blog_posts"
+  # Creates all CRUD routes for blog_posts entity
+  resources :blog_posts
 
-  get "/blog_posts/:id", to: "blog_posts#show", as: "blog_post"
+  # get "/blog_posts/new", to: "blog_posts#new", as: "new_blog_post" # New must be placed before Show, so /new is not taken as not-existing id
+  # post "/blog_posts", to: "blog_posts#create", as: "blog_posts"
+  #
+  # get "/blog_posts/:id/edit", to: "blog_posts#edit", as: "edit_blog_post"
+  # patch "/blog_posts/:id", to: "blog_posts#update"
+  #
+  # delete "/blog_posts/:id", to: "blog_posts#destroy"
+  #
+  # get "/blog_posts/:id", to: "blog_posts#show", as: "blog_post"
 
   # Defines the root path route ("/")
   root "blog_posts#index"
