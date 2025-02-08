@@ -4,6 +4,11 @@
   <% @blog_posts.each do |blog_post| %>
     <h2><%= link_to blog_post.title, blog_post_path(blog_post.id) %></h2>
     <!-- blog_post_path(blog_post.id) = blog_post_path(blog_post) = blog_post -->
+    <% if blog_post.draft? %>
+      <div style="background-color: darkgray; color: dimgrey; height: 50px; width: 150px; align-items: center; justify-content: center; display: flex; border-radius: 12px; font-size: 24px"> Draft </div>
+    <% elsif blog_post.scheduled? %>
+      <div style="background-color: lightskyblue; color: dodgerblue; height: 50px; width: 150px; align-items: center; justify-content: center; display: flex; border-radius: 12px; font-size: 24px"> Scheduled </div>
+    <% end %>
     <p><%=blog_post.body %></p>
   <% end %>
 </div>
