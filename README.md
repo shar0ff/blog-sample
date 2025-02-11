@@ -3,22 +3,12 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+TODO:
 
-* Ruby version
+* Add username/ first & last name fields for users 
+and show them instead of user emails in comments
+* Show user role near the name in comments 
+* Add ability to delete comments for admins 
+* Add ability to delete own comments for users 
+* Add pictures for users using gravatar
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
