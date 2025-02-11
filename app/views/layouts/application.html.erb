@@ -16,15 +16,14 @@
     <p class="alert"><%= alert %></p>
 
     <div>
+      <%= link_to "Home", root_path %>
       <% if user_signed_in? %>
-        <%#= link_to "Profile", edit_user_registration_path %>
-        <!-- Line above is available only in case :registerable is true -->
+        <%= link_to "Profile", edit_user_registration_path %>
         <%= link_to "New post", new_blog_post_path %>
         <%= button_to "Log out", destroy_user_session_path, method: :delete %>
       <%else %>
         <%= link_to "Log In", new_user_session_path %>
-        <%#= link_to "Sign Up", new_user_registration_path %>
-        <!-- Return :registerable to User model and uncomment line above in order to add ability to sign up -->
+        <%= link_to "Sign Up", new_user_registration_path %>
       <% end %>
     </div>
 
