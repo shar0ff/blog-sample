@@ -1,11 +1,12 @@
 class BlogPostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_admin!, except: [:index, :show]
   before_action :set_blog_post, only: [:show, :edit, :update, :destroy] # only: [...] is opposite to except: [...]
   def index
-    @blog_posts = user_signed_in? ? BlogPost.sorted: BlogPost.published.sorted
+    @blog_posts = current_user&.admin? ? BlogPost.sorted: BlogPost.published.sorted
     @pagy, @blog_posts = pagy(@blog_posts)
   rescue Pagy::OverflowError
     redirect_to root_path(page: 1)
+    # another option to replace line above:
     # params[:page] = 1
     # retry
   end
@@ -49,7 +50,7 @@ class BlogPostsController < ApplicationController
   end
 
   def set_blog_post
-    @blog_post = user_signed_in? ? BlogPost.find(params[:id]) : BlogPost.published.find(params[:id])
+    @blog_post = current_user.admin? ? BlogPost.find(params[:id]) : BlogPost.published.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end
