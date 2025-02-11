@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # Creates all CRUD routes for blog_posts entity
   resources :blog_posts do
     resource :cover_image, only: [:destroy], module: :blog_posts
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :destroy]
   end
 
   # Defines the root path route ("/")

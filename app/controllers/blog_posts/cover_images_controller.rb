@@ -1,7 +1,7 @@
 class BlogPosts::CoverImagesController < ApplicationController
   include ActionView::RecordIdentifier
 
-  before_action :authenticate_user!
+  before_action :authenticate_admin!
   before_action :set_blog_post
 
   def destroy

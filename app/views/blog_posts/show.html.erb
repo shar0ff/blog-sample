@@ -1,26 +1,37 @@
 <h1><%=@blog_post.title %></h1>
-<%= link_to "Edit post", edit_blog_post_path(@blog_post) if user_signed_in? %>
+
+<% if current_user&.admin? %>
+  <%= link_to "Edit post", edit_blog_post_path(@blog_post) if user_signed_in? %>
+<% end %>
+
 <%= image_tag @blog_post.cover_image if @blog_post.cover_image.present? %>
 <p><%=@blog_post.content %></p>
 
-<h2>Comments</h2>
-<% @blog_post.comments.each do |comment| %>
-  <p>
-    <strong><%= comment.user.email %>:</strong>
-    <%= comment.body %>
-  </p>
-<% end %>
-
-<% if user_signed_in? %>
-  <%= form_for [@blog_post, Comment.new] do |f| %>
-    <div>
-      <%= f.label :body %><br>
-      <%= f.text_area :body %>
-    </div>
-    <div>
-      <%= f.button "Add Comment" %>
-    </div>
+<% if @blog_post.published? %>
+  <h2>Comments: </h2>
+  <% @blog_post.comments.each do |comment| %>
+    <p>
+      <strong><%= comment.user.email %>:</strong>
+      <%= comment.body %>
+    </p>
+    <% if user_signed_in? && (comment.user == current_user || current_user&.admin?) %>
+      <%= link_to 'Delete', [@blog_post, comment],
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this comment?" } %>
+    <% end %>
+    <!--  blog_post_comment_path(comment.blog_post, comment) equals to [@blog_post, comment] -->
   <% end %>
-<% else %>
-  <p>You need to <%= link_to 'log in', new_user_session_path %> to comment.</p>
+
+  <% if user_signed_in? %>
+    <%= form_for [@blog_post, Comment.new] do |f| %>
+      <div>
+        <%= f.label :body %><br>
+        <%= f.text_area :body %>
+      </div>
+      <div>
+        <%= f.button "Add Comment" %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>You need to <%= link_to 'log in', new_user_session_path %> to comment.</p>
+  <% end %>
 <% end %>
