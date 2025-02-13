@@ -11,7 +11,9 @@
   <h2>Comments: </h2>
   <% @blog_post.comments.each do |comment| %>
     <p>
-      <strong><%= comment.user.email %>:</strong>
+      <strong>
+        <%= comment.user.email %><%= comment.user.admin? ? " (Admin)" : "" %>:
+      </strong>
       <%= comment.body %>
     </p>
     <% if user_signed_in? && (comment.user == current_user || current_user&.admin?) %>

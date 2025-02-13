@@ -7,6 +7,7 @@ TODO:
 
 * Add username/ first & last name fields for users 
 and show them instead of user emails in comments
-* Show user role near the name in comments
 * Add pictures for users using gravatar
-
+* Add categories/tags  to posts 
+* styles
+* static pages 
