@@ -6,7 +6,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get help" do
+  test "should get reviews" do
     get static_pages_help_url
     assert_response :success
   end
