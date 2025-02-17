@@ -1,0 +1,77 @@
+<header class="header" id="header">
+  <nav class="navbar container">
+    <%= link_to "BlogSample", root_path, class: "logo" %>
+
+    <div class="menu" id="menu">
+      <ul class="list">
+        <li class="list-item">
+          <%= link_to "Home", root_path, class: "list-link current" %>
+        </li>
+        <li class="list-item">
+          <%= link_to "Categories", categories_path, class: "list-link" %>
+        </li>
+        <li class="list-item">
+          <%= link_to "Reviews",  reviews_path, class: "list-link" %>
+        </li>
+        <li class="list-item">
+          <%= link_to "Contact",  contact_path, class: "list-link" %>
+        </li>
+        <% if user_signed_in? %>
+          <li class="list-item">
+            <%= link_to "Profile", edit_user_registration_path, class: "list-link" %>
+          </li>
+          <li class="list-item">
+            <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "list-link" %>
+          </li>
+        <%elsif user_signed_in? && current_user.admin? %>
+          <li class="list-item">
+            <%= link_to "New post", new_blog_post_path, class: "list-link" %>
+          </li>
+        <% else %>
+          <li class="list-item">
+            <%= link_to "Log in", new_user_session_path, class: "list-link screen-lg-hidden" %>
+          </li>
+          <li class="list-item">
+            <%= link_to "Sign up", new_user_registration_path, class: "list-link screen-lg-hidden" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="list list-right">
+      <button class="btn place-items-center" id="theme-toggle-btn">
+        <i class="ri-sun-line sun-icon"></i>
+        <i class="ri-moon-line moon-icon"></i>
+      </button>
+
+      <button class="btn place-items-center" id="search-icon">
+        <i class="ri-search-line"></i>
+      </button>
+
+      <button class="btn place-items-center screen-lg-hidden menu-toggle-icon" id="menu-toggle-icon">
+        <i class="ri-menu-3-line open-menu-icon"></i>
+        <i class="ri-close-line close-menu-icon"></i>
+      </button>
+
+      <%= link_to "Log in", new_user_session_path, class: "list-link screen-sm-hidden" %>
+      <%= link_to "Sign up", new_user_registration_path, class: "list-link screen-sm-hidden btn sign-up-btn fancy-border" %>
+    </div>
+  </nav>
+</header>
+
+<div class="search-form-container container" id="search-form-container">
+
+  <div class="form-container-inner">
+    <form action="" class="form">
+      <input type=text class="form-input" placeholder="What are looking for?">
+      <button class="btn form-btn" type="submit">
+        <i class="ri-search-line"></i>
+      </button>
+    </form>
+    <span class="form-note"> Or press ESC to close. </span>
+  </div>
+
+  <button class="btn form-close-btn place-items-center" id="form-close-btn">
+    <i class="ri-close-line"></i>
+  </button>
+</div>
