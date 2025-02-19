@@ -119,6 +119,7 @@
     <orderEntry type="library" scope="PROVIDED" name="sprockets-rails (v3.5.2, rbenv: 3.2.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="stimulus-rails (v1.3.4, rbenv: 3.2.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="stringio (v3.1.2, rbenv: 3.2.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="swiper-rails (v1.0.4, rbenv: 3.2.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v1.3.2, rbenv: 3.2.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="timeout (v0.4.3, rbenv: 3.2.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="turbo-rails (v2.0.11, rbenv: 3.2.0) [gem]" level="application" />
@@ -165,6 +166,7 @@
         <option value="scaffold" />
         <option value="scaffold_controller" />
         <option value="stimulus" />
+        <option value="swiper:swiper" />
         <option value="system_test" />
         <option value="task" />
         <option value="test_unit:channel" />
@@ -203,6 +205,7 @@
         <option value="scaffold" />
         <option value="scaffold_controller" />
         <option value="stimulus" />
+        <option value="swiper:swiper" />
         <option value="system_test" />
         <option value="task" />
         <option value="test_unit:channel" />
