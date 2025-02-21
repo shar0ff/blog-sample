@@ -1,11 +1,42 @@
-<h1><%=@blog_post.title %></h1>
+<section class="blog-post section-header-offset">
 
-<% if current_user&.admin? %>
-  <%= link_to "Edit post", edit_blog_post_path(@blog_post) if user_signed_in? %>
-<% end %>
+  <div class="blog-post-container container">
 
-<%= image_tag @blog_post.cover_image if @blog_post.cover_image.present? %>
-<p><%=@blog_post.content %></p>
+    <div class="blog-post-data">
+      <h3 class="title blog-post-title"><%=@blog_post.title %></h3>
+
+      <div class="article-data">
+
+        <span><%=@blog_post.published_at %></span>
+        <span class="article-data-spacer"></span>
+        <span>estimated read time</span>
+
+        <% if current_user&.admin? %>
+          <span class="article-data-spacer"></span>
+          <%= link_to "Edit post", edit_blog_post_path(@blog_post) if user_signed_in? %>
+        <% end %>
+      </div>
+
+      <img<%= image_tag @blog_post.cover_image if @blog_post.cover_image.present? %>>
+    </div>
+
+    <div class="container">
+      <p><%=@blog_post.content %></p>
+    </div>
+
+    <div class="author d-grid">
+
+      <div class="author-image-box">
+        <%= image_tag "img-2.jpeg", class: "article-image"%>
+      </div>
+
+      <div class="author-about">
+        <h3 class="author-name"> Author Name </h3>
+        <p> Something interesting about author of the current article. Something interesting about author of the current article. </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <% if @blog_post.published? %>
   <h2>Comments: </h2>

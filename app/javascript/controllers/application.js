@@ -26,7 +26,7 @@ document.addEventListener("turbo:load", () => {
         }
     }
 
-    document.addEventListener('scroll', scrollHeader);
+    window.addEventListener('scroll', scrollHeader);
 
     const menuToggleIcon = selectElement('#menu-toggle-icon');
 
