@@ -727,7 +727,7 @@ article:hover .article-title{
         align-items: center;
     }
 
-    .trending-news-image-box{
+    .trending-news-img-box{
         width: 50%;
     }
 
@@ -783,6 +783,15 @@ article:hover .article-title{
         grid-row: 4/6;
     }
 
+    .featured-article-2 .article-data,
+    .featured-article-1 .article-data{
+        display: inline;
+    }
+
+    .sidebar{
+        grid-column: 1/-1;
+    }
+
     .older-posts .article{
         grid-template-columns: 25rem 1fr;
     }
@@ -796,17 +805,17 @@ article:hover .article-title{
     }
 }
 
-@media screen and (min-width: 1024px){
+@media screen and (min-width: 1024px) {
     .menu{
-        position: initial;
+        position: static;
         width: initial;
         padding: initial;
         background-color: transparent;
-        opacity: initial;
-        transform: initial;
+        opacity: 1;
+        transform: scale(1);
     }
 
-    .menu> > .list{
+    .menu > .list{
         flex-direction: row;
     }
 
@@ -819,16 +828,17 @@ article:hover .article-title{
     }
 
     .sign-up-btn{
-        padding: 0.4rem;
+        padding: 4px;
     }
 
+    /* Fancy button animation effect */
     .btn.fancy-border:hover::before{
         animation: animate_border 0.75s linear infinite;
     }
 
-    @keyframes animate_border {
+    @keyframes animate_border{
         to{
-            transform: translateX(-50%);
+            transform:translateX(-50%)
         }
     }
 
@@ -836,7 +846,7 @@ article:hover .article-title{
         grid-template-columns: 1fr 40rem;
     }
 
-    .trending-news-image-box{
+    .trending-news-img-box{
         width: 10rem;
         height: 10rem;
     }

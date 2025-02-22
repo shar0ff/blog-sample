@@ -1,38 +1,45 @@
 <header class="header" id="header">
   <nav class="navbar container">
-    <%= link_to "BlogSample", root_path, class: "logo" %>
+    <a href="<%=root_path%>" class="logo">BlogSample</a>
 
     <div class="menu" id="menu">
       <ul class="list">
         <li class="list-item">
-          <%= link_to "Home", root_path, class: "list-link current" %>
+          <a href="<%=root_path%>" class="list-link current">Home</a>
         </li>
         <li class="list-item">
-          <%= link_to "Categories", categories_path, class: "list-link" %>
+          <a href="<%=categories_path%>" class="list-link">Categories</a>
         </li>
         <li class="list-item">
-          <%= link_to "Reviews",  reviews_path, class: "list-link" %>
+          <a href="<%=reviews_path%>" class="list-link">Reviews</a>
         </li>
         <li class="list-item">
-          <%= link_to "Contact",  contact_path, class: "list-link" %>
+          <a href="<%=contact_path%>" class="list-link">Contact</a>
         </li>
-        <% if user_signed_in? %>
+
+        <%if user_signed_in?%>
+
+          <% if current_user.admin? %>
+            <li class="list-item">
+              <a href="<%=new_blog_post_path%>" class="list-link">New post</a>
+            </li>
+          <%end %>
+
           <li class="list-item">
-            <%= link_to "Profile", edit_user_registration_path, class: "list-link" %>
+            <a href="<%=edit_user_registration_path%>" class="list-link">Profile</a>
           </li>
+
           <li class="list-item">
             <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "list-link" %>
           </li>
-        <%elsif user_signed_in? && current_user.admin? %>
-          <li class="list-item">
-            <%= link_to "New post", new_blog_post_path, class: "list-link" %>
-          </li>
         <% else %>
+
           <li class="list-item">
-            <%= link_to "Log in", new_user_session_path, class: "list-link screen-lg-hidden" %>
+            <a href="<%=new_user_session_path%>" class="list-link screen-lg-hidden">Log in</a>
           </li>
+
           <li class="list-item">
-            <%= link_to "Sign up", new_user_registration_path, class: "list-link screen-lg-hidden" %>
+            <a href="<%=new_user_registration_path%>" class="list-link screen-lg-hidden">Sign up</a>
           </li>
         <% end %>
       </ul>
@@ -53,8 +60,13 @@
         <i class="ri-close-line close-menu-icon"></i>
       </button>
 
-      <%= link_to "Log in", new_user_session_path, class: "list-link screen-sm-hidden" %>
-      <%= link_to "Sign up", new_user_registration_path, class: "list-link screen-sm-hidden btn sign-up-btn fancy-border" %>
+      <% if not user_signed_in? %>
+        <a href="<%=new_user_session_path%>" class="list-link screen-sm-hidden">Log in</a>
+        <a href="<%=new_user_registration_path%>" class="btn sign-up-btn fancy-border screen-sm-hidden">
+          <span>Sign up</span>
+        </a>
+      <% end %>
+
     </div>
   </nav>
 </header>

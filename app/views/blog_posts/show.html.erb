@@ -17,7 +17,7 @@
         <% end %>
       </div>
 
-      <img<%= image_tag @blog_post.cover_image if @blog_post.cover_image.present? %>>
+      <%= image_tag @blog_post.cover_image if @blog_post.cover_image.present? %>
     </div>
 
     <div class="container">
