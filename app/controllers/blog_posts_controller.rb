@@ -20,6 +20,7 @@ class BlogPostsController < ApplicationController
 
   def create
     @blog_post = BlogPost.new(blog_post_params)
+    @blog_post.author = current_user
     if @blog_post.save
       redirect_to @blog_post
     else
@@ -46,7 +47,7 @@ class BlogPostsController < ApplicationController
   private
 
   def blog_post_params
-    params.require(:blog_post).permit(:title, :cover_image, :content, :published_at)
+    params.require(:blog_post).permit(:title, :cover_image, :content, :published_at, :author_id)
   end
 
   def set_blog_post

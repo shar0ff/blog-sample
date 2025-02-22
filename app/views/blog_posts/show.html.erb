@@ -27,11 +27,11 @@
     <div class="author d-grid">
 
       <div class="author-image-box">
-        <%= image_tag "img-2.jpeg", class: "article-image"%>
+        <%= gravatar_for(@blog_post.author, size: 500, class: "article-image")%>
       </div>
 
       <div class="author-about">
-        <h3 class="author-name"> Author Name </h3>
+        <h3 class="author-name"> <%= @blog_post.author.email %> </h3>
         <p> Something interesting about author of the current article. Something interesting about author of the current article. </p>
       </div>
     </div>

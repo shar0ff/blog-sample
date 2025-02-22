@@ -2,6 +2,7 @@ class BlogPost < ApplicationRecord
   has_one_attached :cover_image
   has_rich_text :content
   has_many :comments, dependent: :destroy
+  belongs_to :author, class_name: "User"
 
   validates :title, presence: true
   validates :content, presence: true

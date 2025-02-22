@@ -1,18 +1,36 @@
 <% provide(:title, "All Posts") %>
-<h1>My Blog Posts:</h1>
 
-<div>
+<div class="container">
+  <h2 class="title section-title" data-name="Blog posts"> Blog posts </h2>
+
   <% @blog_posts.each do |blog_post| %>
-    <%= image_tag blog_post.cover_image if blog_post.cover_image.present? %>
-    <h2><%= link_to blog_post.title, blog_post_path(blog_post.id) %></h2>
-    <!-- blog_post_path(blog_post.id) = blog_post_path(blog_post) = blog_post -->
+    <a href="<%= blog_post_path(blog_post.id) %>" class="trending-news-box">
+      <!-- blog_post_path(blog_post.id) = blog_post_path(blog_post) = blog_post -->
+
+      <div class="trending-news-image-box">
+        <span class="trending-number place-items-center"><%= blog_post.id %></span>
+        <%= image_tag blog_post.cover_image, class: "article-image" %>
+        <%#= image_tag blog_post.cover_image if blog_post.cover_image.present? %>
+      </div>
+
+      <div class="trending-news-data">
+        <div class="article-data">
+          <span> <%= blog_post.published_at %> </span>
+          <span class="article-data-spacer"></span>
+          <span> estimated read time </span>
+
+          <h3 class="title article-title"> <%= blog_post.title %> </h3>
+        </div>
+      </div>
+    </a>
+
     <% if blog_post.draft? %>
       <div style="background-color: darkgray; color: dimgrey; height: 50px; width: 150px; align-items: center; justify-content: center; display: flex; border-radius: 12px; font-size: 24px"> Draft </div>
     <% elsif blog_post.scheduled? %>
       <div style="background-color: lightskyblue; color: dodgerblue; height: 50px; width: 150px; align-items: center; justify-content: center; display: flex; border-radius: 12px; font-size: 24px"> Scheduled </div>
     <% end %>
-    <p><%=blog_post.content %></p>
-  <% end %>
-</div>
 
-<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+  <% end %>
+
+  <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+</div>
